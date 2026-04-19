@@ -1,0 +1,33 @@
+headers = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[[plugins]]
+origin = "default"
+package = "@netlify/plugin-nextjs"
+
+[plugins.inputs]
+
+[build]
+publish = "C:\\aidenai\\Bhu\\10to10\\apps\\web\\apps\\web\\.next"
+publishOrigin = "ui"
+commandOrigin = "ui"
+base = "C:\\aidenai\\Bhu\\10to10\\apps\\web"
+command = "npm --workspace @10to10/web run build"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
