@@ -9,6 +9,8 @@ import { SmoothScroll } from "@/components/smooth-scroll";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { BackToTop } from "@/components/back-to-top";
 import { RouteScrollTop } from "@/components/route-scroll-top";
+import { StickyMobileCta } from "@/components/sticky-mobile-cta";
+import { CursorGlow } from "@/components/cursor-glow";
 import { siteConfig } from "@/lib/utils";
 
 const displayFont = Fredoka({
@@ -99,14 +101,17 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <a href="#main" className="skip-link">Skip to main content</a>
         <SmoothScroll>
           <BookingProvider>
+            <CursorGlow />
             <ScrollProgress />
             <RouteScrollTop />
             <Navbar />
-            <main className="flex-1">{children}</main>
+            <main id="main" className="flex-1">{children}</main>
             <Footer />
             <BackToTop />
+            <StickyMobileCta />
           </BookingProvider>
         </SmoothScroll>
       </body>
