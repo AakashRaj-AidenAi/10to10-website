@@ -29,6 +29,10 @@
     @apply font-display tracking-tight;
     font-weight: 700;
   }
+  /* Stronger focus rings everywhere — better keyboard a11y */
+  :focus-visible {
+    @apply outline-none ring-4 ring-brand-primary/30 ring-offset-2 ring-offset-brand-cloud rounded-md;
+  }
 }
 
 @layer components {
@@ -85,6 +89,46 @@
   }
   .input {
     @apply w-full rounded-2xl border-2 border-brand-ink/10 bg-white px-4 py-3 text-base text-brand-ink placeholder:text-brand-ink/35 focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/15 transition;
+  }
+
+  /* Skip-to-content link — hidden until focused (a11y) */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-full focus:bg-brand-ink focus:text-white focus:font-bold focus:shadow-lifted;
+  }
+
+  /* Futuristic gradient-border card */
+  .grad-border {
+    position: relative;
+    background: white;
+    border-radius: 1.5rem;
+  }
+  .grad-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1.5px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #ff5a8a, #8b5cf6, #00d4c8);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .grad-border:hover::before {
+    opacity: 1;
+  }
+
+  /* Animated mesh background utility */
+  .mesh-anim {
+    background-size: 200% 200%;
+    animation: mesh-shift 18s ease infinite;
+  }
+  @keyframes mesh-shift {
+    0%, 100% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
   }
 }
 
