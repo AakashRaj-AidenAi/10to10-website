@@ -7,6 +7,8 @@
   --font-sans: "Nunito", "Inter", system-ui, sans-serif;
   --font-playful: "Fredoka", "Inter", system-ui, sans-serif;
   --font-accent: "Caveat", cursive;
+  --shadow-card: 0 1px 2px rgba(17,12,35,0.04), 0 2px 8px -2px rgba(17,12,35,0.06);
+  --shadow-lift: 0 2px 4px rgba(17,12,35,0.05), 0 12px 24px -8px rgba(17,12,35,0.1);
 }
 
 @layer base {
@@ -15,12 +17,9 @@
     -webkit-tap-highlight-color: transparent;
   }
   body {
-    @apply bg-brand-cloud text-brand-ink font-sans antialiased;
+    @apply text-brand-ink font-sans antialiased;
+    background-color: #fdfbf7;
     font-feature-settings: "cv11", "ss01", "ss03";
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,217,61,0.15), transparent),
-      radial-gradient(ellipse 60% 40% at 0% 30%, rgba(0,212,200,0.08), transparent),
-      radial-gradient(ellipse 60% 40% at 100% 60%, rgba(139,92,246,0.08), transparent);
   }
   ::selection {
     @apply bg-brand-primary text-white;
@@ -29,33 +28,44 @@
     @apply font-display tracking-tight;
     font-weight: 700;
   }
-  /* Stronger focus rings everywhere — better keyboard a11y */
   :focus-visible {
-    @apply outline-none ring-4 ring-brand-primary/30 ring-offset-2 ring-offset-brand-cloud rounded-md;
+    @apply outline-none ring-4 ring-brand-primary/25 ring-offset-2 ring-offset-[#fdfbf7] rounded-md;
+  }
+  /* Subtle grain for warmth without clutter */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    z-index: 1;
   }
 }
 
 @layer components {
   .glass {
-    @apply backdrop-blur-xl bg-white/70 border border-white/80;
+    @apply backdrop-blur-xl bg-white/75 border border-black/[0.06];
   }
   .glass-dark {
-    @apply backdrop-blur-xl bg-brand-ink/70 border border-white/15 text-white;
+    @apply backdrop-blur-xl bg-brand-ink/75 border border-white/10 text-white;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-bold transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-primary/40 disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-sm transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-primary/30 disabled:opacity-50;
   }
   .btn-primary {
-    @apply btn bg-gradient-to-br from-brand-primary to-brand-primary-deep text-white shadow-glow hover:-translate-y-1 hover:scale-105 active:scale-95;
+    @apply btn bg-brand-primary text-white hover:bg-brand-primary-deep hover:-translate-y-[1px] active:translate-y-0;
+    box-shadow: 0 6px 16px -4px rgba(255,90,138,0.4), 0 2px 4px rgba(17,12,35,0.08);
   }
   .btn-yellow {
-    @apply btn bg-brand-yellow text-brand-ink shadow-glow-yellow hover:-translate-y-1 hover:scale-105 active:scale-95;
+    @apply btn bg-brand-yellow text-brand-ink hover:brightness-95 hover:-translate-y-[1px] active:translate-y-0;
   }
   .btn-turq {
-    @apply btn bg-brand-turquoise text-white shadow-glow-turq hover:-translate-y-1 hover:scale-105 active:scale-95;
+    @apply btn bg-brand-turquoise text-white hover:brightness-95 hover:-translate-y-[1px] active:translate-y-0;
   }
   .btn-ghost {
-    @apply btn bg-white/80 backdrop-blur text-brand-ink border-2 border-brand-ink/10 hover:bg-white hover:border-brand-primary/30;
+    @apply btn bg-white text-brand-ink border border-black/10 hover:border-black/25 hover:-translate-y-[1px] active:translate-y-0;
   }
   .chip {
     @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
@@ -64,7 +74,7 @@
     @apply py-20 md:py-28;
   }
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand-primary;
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-brand-primary;
   }
   .heading-xl {
     font-family: var(--font-display);
@@ -74,11 +84,15 @@
     font-family: var(--font-display);
     @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight;
   }
+  .accent {
+    @apply text-brand-primary;
+  }
+  /* Legacy — map old rainbow gradients to solid pink for crispness */
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-br from-brand-primary via-brand-grape to-brand-turquoise;
+    @apply text-brand-primary;
   }
   .gradient-sun {
-    @apply bg-clip-text text-transparent bg-gradient-to-br from-brand-yellow via-brand-orange to-brand-primary;
+    @apply text-brand-primary;
   }
   .tilt-card {
     transform-style: preserve-3d;
@@ -88,47 +102,23 @@
     transform-style: preserve-3d;
   }
   .input {
-    @apply w-full rounded-2xl border-2 border-brand-ink/10 bg-white px-4 py-3 text-base text-brand-ink placeholder:text-brand-ink/35 focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/15 transition;
+    @apply w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-base text-brand-ink placeholder:text-brand-ink/40 focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/15 transition;
+  }
+  .card {
+    @apply rounded-2xl bg-white border border-black/[0.07];
+    box-shadow: var(--shadow-card);
+  }
+  .card-hover {
+    @apply transition-all hover:border-black/15;
+    box-shadow: var(--shadow-card);
+  }
+  .card-hover:hover {
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-2px);
   }
 
-  /* Skip-to-content link — hidden until focused (a11y) */
   .skip-link {
     @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-full focus:bg-brand-ink focus:text-white focus:font-bold focus:shadow-lifted;
-  }
-
-  /* Futuristic gradient-border card */
-  .grad-border {
-    position: relative;
-    background: white;
-    border-radius: 1.5rem;
-  }
-  .grad-border::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    padding: 1.5px;
-    border-radius: inherit;
-    background: linear-gradient(135deg, #ff5a8a, #8b5cf6, #00d4c8);
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .grad-border:hover::before {
-    opacity: 1;
-  }
-
-  /* Animated mesh background utility */
-  .mesh-anim {
-    background-size: 200% 200%;
-    animation: mesh-shift 18s ease infinite;
-  }
-  @keyframes mesh-shift {
-    0%, 100% { background-position: 0% 0%; }
-    50% { background-position: 100% 100%; }
   }
 }
 

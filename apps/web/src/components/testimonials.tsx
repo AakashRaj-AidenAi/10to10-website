@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Quote, Star } from "lucide-react";
+import { Star } from "lucide-react";
 
 const items = [
   {
@@ -26,35 +26,34 @@ const items = [
 
 export function Testimonials() {
   return (
-    <section className="section bg-brand-cloud">
+    <section className="section">
       <div className="container">
-        <div className="text-center mb-14">
-          <span className="eyebrow">
-            <span className="h-px w-8 bg-brand-primary" /> Loved by families
-          </span>
-          <h2 className="heading-lg mt-4">
-            Don&apos;t take our word for it.
+        <div className="max-w-xl mb-12 md:mb-16">
+          <span className="eyebrow">Testimonials</span>
+          <h2 className="heading-lg mt-3">
+            Trusted by families<br className="hidden md:inline" /> across <span className="accent">Khammam.</span>
           </h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-4">
           {items.map((t, i) => (
             <motion.blockquote
               key={t.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative rounded-3xl bg-white p-8 shadow-lifted border-2 border-brand-ink/5 hover:border-brand-primary/20 hover:-translate-y-1 transition"
+              transition={{ duration: 0.4, delay: i * 0.06 }}
+              className="card p-7"
             >
-              <Quote className="h-8 w-8 text-brand-primary/20 absolute top-6 right-6" />
-              <div className="flex gap-1 text-brand-yellow mb-4">
+              <div className="flex gap-0.5 text-brand-primary mb-5">
                 {[...Array(5)].map((_, idx) => (
-                  <Star key={idx} className="h-4 w-4 fill-current" />
+                  <Star key={idx} className="h-3.5 w-3.5 fill-current" />
                 ))}
               </div>
-              <p className="text-brand-ink/80 leading-relaxed italic">&ldquo;{t.quote}&rdquo;</p>
-              <footer className="mt-6 pt-6 border-t border-brand-ink/5">
-                <div className="font-semibold">{t.name}</div>
+              <p className="text-brand-ink/85 leading-relaxed text-[15px]">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <footer className="mt-6 pt-5 border-t border-black/[0.07]">
+                <div className="font-semibold text-sm text-brand-ink">{t.name}</div>
                 <div className="text-xs text-brand-ink/50 mt-0.5">{t.role}</div>
               </footer>
             </motion.blockquote>

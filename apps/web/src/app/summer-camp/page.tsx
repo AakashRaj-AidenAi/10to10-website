@@ -181,7 +181,6 @@ export default function SummerCampPage() {
       {/* HERO */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-mesh-hero" />
-        <div className="absolute inset-0 bg-confetti bg-[length:160px_160px] opacity-30" />
 
         <div className="container relative">
           <div className="max-w-3xl">

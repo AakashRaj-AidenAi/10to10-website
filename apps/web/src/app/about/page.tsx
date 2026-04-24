@@ -36,7 +36,6 @@ export default function AboutPage() {
       {/* HERO */}
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-mesh-hero" />
-        <div className="absolute inset-0 bg-confetti bg-[length:160px_160px] opacity-25" />
         <div className="container relative max-w-3xl">
           <span className="inline-flex items-center gap-2 chip bg-white/80 backdrop-blur border-2 border-brand-primary/20 font-bold text-brand-primary">
             <Heart className="h-3.5 w-3.5" /> Our story

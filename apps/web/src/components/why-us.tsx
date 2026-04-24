@@ -7,72 +7,64 @@ const reasons = [
   {
     icon: ShieldCheck,
     title: "Sanitised every hour",
-    desc: "Every play surface, ball pit and game controller wiped down on the hour. Always.",
-    color: "bg-brand-turquoise/10 text-brand-turquoise",
+    desc: "Every play surface, ball pit and game controller wiped down on the hour.",
   },
   {
     icon: HeartHandshake,
     title: "Trained, friendly staff",
-    desc: "Our team isn't just trained in safety — they actually love kids. You'll feel it the moment you walk in.",
-    color: "bg-brand-primary/10 text-brand-primary",
+    desc: "Every team member is trained in child safety, first aid and engagement.",
   },
   {
     icon: Users2,
-    title: "Small, supervised batches",
-    desc: "1 staff member for every 8 kids. Nobody slips through the cracks. Nobody feels lost.",
-    color: "bg-brand-grape/10 text-brand-grape",
+    title: "1:8 supervision ratio",
+    desc: "One staff member for every eight children — no child goes unseen.",
   },
   {
     icon: Sparkles,
-    title: "Always something new",
-    desc: "New themes, new games, new events every month. Boredom is not allowed on the premises.",
-    color: "bg-brand-yellow/20 text-brand-orange",
+    title: "Fresh programming monthly",
+    desc: "New themes, games and events every month so repeat visits stay novel.",
   },
   {
     icon: Coffee,
     title: "Parent lounge",
-    desc: "Comfortable seating, free chai/coffee, and Wi-Fi. Drop the kids, breathe, recharge.",
-    color: "bg-brand-orange/10 text-brand-orange",
+    desc: "Comfortable seating, complimentary tea and Wi-Fi — breathe and recharge.",
   },
   {
     icon: Wifi,
-    title: "Free everything",
-    desc: "Free Wi-Fi, free water, free invitation cards, free trial sessions. We don't nickel-and-dime.",
-    color: "bg-brand-mint/20 text-brand-turquoise",
+    title: "No hidden costs",
+    desc: "Wi-Fi, water, invitation cards and trial sessions included with every membership.",
   },
 ];
 
 export function WhyUs() {
   return (
-    <section className="section relative">
+    <section className="section">
       <div className="container">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="eyebrow">
-            <span className="h-px w-8 bg-brand-primary" /> Why families pick us
-          </span>
-          <h2 className="heading-lg mt-4">
-            Six reasons parents <span className="gradient-text">come back</span>
+        <div className="max-w-xl mb-12 md:mb-16">
+          <span className="eyebrow">Why families choose us</span>
+          <h2 className="heading-lg mt-3">
+            Built around <span className="accent">what matters.</span>
           </h2>
-          <p className="mt-4 text-brand-ink/65 font-medium">
-            Anyone can build a play area. We obsess over the details that turn a one-time visit into a weekly habit.
+          <p className="mt-5 text-brand-ink/60 text-sm md:text-base leading-relaxed">
+            A safe, well-run, thoughtfully-staffed venue that parents trust and children love.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {reasons.map((r, i) => (
             <motion.div
               key={r.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="rounded-3xl bg-white border-2 border-brand-ink/5 p-7 hover:-translate-y-1 hover:border-brand-primary/20 hover:shadow-lifted transition"
+              transition={{ duration: 0.35, delay: i * 0.04 }}
+              className="card card-hover p-6"
             >
-              <div className={`inline-flex w-12 h-12 rounded-2xl items-center justify-center ${r.color}`}>
-                <r.icon className="h-6 w-6" />
+              <div className="inline-flex w-10 h-10 rounded-xl items-center justify-center bg-brand-primary/10 text-brand-primary">
+                <r.icon className="h-5 w-5" strokeWidth={2} />
               </div>
-              <h3 className="font-display text-xl font-bold mt-5">{r.title}</h3>
-              <p className="text-sm text-brand-ink/70 mt-2 leading-relaxed">
+              <h3 className="font-display text-lg font-bold mt-5 text-brand-ink">{r.title}</h3>
+              <p className="text-sm text-brand-ink/60 mt-2 leading-relaxed">
                 {r.desc}
               </p>
             </motion.div>
