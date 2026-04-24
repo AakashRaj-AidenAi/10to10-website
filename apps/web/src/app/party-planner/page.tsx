@@ -29,24 +29,8 @@ export default function PartyPlannerPage() {
     <>
       {/* HERO */}
       <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-mesh-hero" />
-        <div className="absolute inset-0 bg-confetti bg-[length:160px_160px] opacity-30" />
-        {/* Floating balloons */}
-        <div className="absolute top-20 left-[8%] text-5xl md:text-7xl animate-float" style={{ filter: "drop-shadow(0 12px 24px rgba(255,90,138,0.35))" }}>
-          🎈
-        </div>
-        <div
-          className="absolute top-32 right-[12%] text-4xl md:text-6xl animate-float-slow"
-          style={{ filter: "drop-shadow(0 12px 24px rgba(0,212,200,0.35))", animationDelay: "1s" }}
-        >
-          🎈
-        </div>
-        <div
-          className="absolute bottom-16 right-[8%] text-4xl md:text-5xl animate-float"
-          style={{ animationDelay: "2s" }}
-        >
-          🎉
-        </div>
+        <div className="absolute -top-20 -right-20 w-[480px] h-[480px] rounded-full bg-brand-primary/8 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-[420px] h-[420px] rounded-full bg-brand-turquoise/8 blur-3xl pointer-events-none" />
 
         <div className="container relative">
           <div className="max-w-3xl">

@@ -124,7 +124,6 @@ export default function ContactPage() {
       {/* HERO */}
       <section className="relative pt-28 md:pt-32 pb-12 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-mesh-hero" />
-        <div className="absolute inset-0 bg-confetti bg-[length:160px_160px] opacity-25" />
 
         <div className="container relative max-w-4xl">
           <div className="flex items-center gap-3 flex-wrap">
