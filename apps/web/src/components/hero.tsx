@@ -29,8 +29,8 @@ export function Hero() {
           WebkitMaskImage: "radial-gradient(ellipse at center, rgba(0,0,0,0.6), transparent 70%)",
         }}
       />
-      <div className="absolute -top-20 -right-20 w-[480px] h-[480px] rounded-full bg-brand-primary/10 blur-3xl" />
-      <div className="absolute -bottom-32 -left-20 w-[420px] h-[420px] rounded-full bg-brand-turquoise/10 blur-3xl" />
+      <div className="absolute -top-20 -right-20 w-[480px] h-[480px] rounded-full bg-brand-primary/8 blur-3xl" />
+      <div className="absolute -bottom-32 -left-20 w-[420px] h-[420px] rounded-full bg-brand-yellow/15 blur-3xl" />
 
       <motion.div style={{ opacity: opacityTitle, y }} className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center">

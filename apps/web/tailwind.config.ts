@@ -13,8 +13,8 @@ const config: Config = {
       colors: {
         brand: {
           // vibrant, kid-joyful palette
-          primary: "#ff5a8a",        // bubblegum coral-pink (NEW primary)
-          "primary-deep": "#ff2e6a",
+          primary: "#2c3873",        // deep indigo (premium, gender-neutral)
+          "primary-deep": "#1a2354",
           turquoise: "#00d4c8",       // pool-party teal
           yellow: "#ffd93d",          // happy sunshine
           orange: "#ff8a3d",          // tangerine
@@ -32,7 +32,7 @@ const config: Config = {
         accent: ["var(--font-accent)", "cursive"],
       },
       boxShadow: {
-        glow: "0 10px 60px -15px rgba(255,90,138,0.55)",
+        glow: "0 10px 60px -15px rgba(44,56,115,0.45)",
         "glow-turq": "0 10px 60px -15px rgba(0,212,200,0.55)",
         "glow-yellow": "0 10px 60px -15px rgba(255,217,61,0.6)",
         "glow-grape": "0 10px 60px -15px rgba(139,92,246,0.55)",
