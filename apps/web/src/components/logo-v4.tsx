@@ -20,14 +20,14 @@ export function LogoV4({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
     <div className="flex items-center gap-3 select-none leading-none" style={{ color: "inherit" }}>
       {/* The mark: 10 ∞ 10 */}
       <div className="flex items-center" style={{ gap }}>
-        {/* Left "10" — pink, slight italic, tabular for balance */}
+        {/* Left "10" — deep indigo, premium */}
         <motion.span
           className="font-bold tabular-nums tracking-[-0.04em] text-brand-primary"
           style={{
             fontSize: num,
             lineHeight: 1,
             fontFamily: "var(--font-playful)",
-            textShadow: "0 2px 12px rgba(255,90,138,0.25)",
+            textShadow: "0 2px 12px rgba(44,56,115,0.2)",
           }}
           initial={{ opacity: 0, x: -8 }}
           animate={{ opacity: 1, x: 0 }}
@@ -48,9 +48,8 @@ export function LogoV4({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
         >
           <defs>
             <linearGradient id="inf-grad" x1="0" y1="10" x2="40" y2="10" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#ff5a8a" />
-              <stop offset="35%" stopColor="#8b5cf6" />
-              <stop offset="65%" stopColor="#8b5cf6" />
+              <stop offset="0%" stopColor="#2c3873" />
+              <stop offset="50%" stopColor="#1e6c8a" />
               <stop offset="100%" stopColor="#00d4c8" />
             </linearGradient>
             <filter id="inf-glow">
