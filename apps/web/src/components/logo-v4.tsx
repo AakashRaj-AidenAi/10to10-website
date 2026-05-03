@@ -1,16 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useId } from "react";
 
 /**
- * Logo Concept v4 — "Infinity Mark" (refined)
+ * Logo Concept v4 — "Infinity Mark"
  *
- * 10 [∞] 10 — the two 10s are color-matched to the infinity gradient
- * endpoints (left = pink, right = turquoise) creating a continuous color
- * story across the entire mark. Numbers use Fredoka for personality
- * while staying typographic.
+ * 10 [∞] 10 — premium typographic mark with a custom SVG infinity (lemniscate)
+ * in a deep-indigo to turquoise gradient. Each instance gets a unique
+ * gradient/filter id via useId so multiple logos on the same page don't
+ * collide.
  */
 export function LogoV4({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
+  const uid = useId().replace(/:/g, "");
+  const gradId = `inf-grad-${uid}`;
+  const glowId = `inf-glow-${uid}`;
   const num = size === "lg" ? "2.4rem" : size === "sm" ? "1.4rem" : "1.75rem";
   const inf = size === "lg" ? 42 : size === "sm" ? 24 : 32;
   const tag = size === "lg" ? "0.65rem" : "0.55rem";
@@ -47,12 +51,12 @@ export function LogoV4({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <defs>
-            <linearGradient id="inf-grad" x1="0" y1="10" x2="40" y2="10" gradientUnits="userSpaceOnUse">
+            <linearGradient id={gradId} x1="0" y1="10" x2="40" y2="10" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stopColor="#2c3873" />
               <stop offset="50%" stopColor="#1e6c8a" />
               <stop offset="100%" stopColor="#00d4c8" />
             </linearGradient>
-            <filter id="inf-glow">
+            <filter id={glowId}>
               <feGaussianBlur stdDeviation="0.8" result="coloredBlur"/>
               <feMerge>
                 <feMergeNode in="coloredBlur"/>
@@ -62,12 +66,12 @@ export function LogoV4({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
           </defs>
           <motion.path
             d="M 6 10 C 6 3, 16 3, 20 10 C 24 17, 34 17, 34 10 C 34 3, 24 3, 20 10 C 16 17, 6 17, 6 10 Z"
-            stroke="url(#inf-grad)"
+            stroke={`url(#${gradId})`}
             strokeWidth="2.8"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
-            filter="url(#inf-glow)"
+            filter={`url(#${glowId})`}
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{ duration: 1.6, ease: "easeInOut", delay: 0.3 }}

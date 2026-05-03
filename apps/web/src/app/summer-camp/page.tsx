@@ -17,9 +17,17 @@ import {
 import { BookButton } from "@/components/book-button";
 
 export const metadata = {
-  title: "Summer Camp 2026",
+  title: "Summer Camp Khammam 2026 — Ages 3-12 | 10to10 Adventures",
   description:
-    "Two months of non-stop learning, creativity, and play at 10to10 Adventures' Summer Camp in Khammam. Ages 3–12. Limited seats.",
+    "Khammam's most loved summer camp for kids ages 3–12. Two months of dance, art, sports, brain games, yoga and more. Daily snacks, trained staff, 1:8 ratio. Limited seats.",
+  keywords: [
+    "summer camp Khammam",
+    "kids summer camp 2026",
+    "kids holiday camp Khammam",
+    "summer activities for kids Khammam",
+    "summer classes Khammam",
+  ],
+  alternates: { canonical: "/summer-camp" },
 };
 
 const activities = [

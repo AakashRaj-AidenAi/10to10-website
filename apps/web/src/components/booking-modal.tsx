@@ -45,22 +45,26 @@ export function BookingProvider({ children }: { children: ReactNode }) {
     setStep("form");
     setOpen(true);
   };
-  const close = () => setOpen(false);
+  const close = () => {
+    setOpen(false);
+    // Reset to fresh form on next open (after exit animation)
+    setTimeout(() => {
+      setStep("form");
+      setPreset(undefined);
+    }, 300);
+  };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = encodeURIComponent(
-      `Hi 10to10! I'd like to book a visit.\n\n` +
-        `• Name: ${form.name}\n` +
-        `• Phone: ${form.phone}\n` +
-        `• Zone: ${form.zone}\n` +
-        `• Guests: ${form.guests}\n` +
-        `• Preferred date: ${form.date || "Flexible"}\n` +
-        (form.notes ? `• Notes: ${form.notes}\n` : "") +
-        `\nThank you!`
-    );
-    // Open WhatsApp in new tab
-    window.open(`${siteConfig.whatsapp}?text=${msg}`, "_blank", "noopener,noreferrer");
+    const { submitLead } = await import("@/lib/lead");
+    await submitLead("Booking Modal", {
+      name: form.name,
+      phone: form.phone,
+      zone: form.zone,
+      guests: form.guests,
+      preferred_date: form.date || "Flexible",
+      notes: form.notes,
+    });
     setStep("sent");
   };
 

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --font-display: "Fredoka", "Inter", system-ui, sans-serif;
-  --font-sans: "Nunito", "Inter", system-ui, sans-serif;
+  --font-display: "Lora", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
   --font-playful: "Fredoka", "Inter", system-ui, sans-serif;
   --font-accent: "Caveat", cursive;
   --shadow-card: 0 1px 2px rgba(17,12,35,0.04), 0 2px 8px -2px rgba(17,12,35,0.06);

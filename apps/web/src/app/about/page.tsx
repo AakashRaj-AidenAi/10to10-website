@@ -2,9 +2,11 @@ import { Heart, Users, Shield, Sparkles } from "lucide-react";
 import { BookButton } from "@/components/book-button";
 
 export const metadata = {
-  title: "About Us",
+  title: "About 10to10 Adventures — Khammam's Family Playground",
   description:
-    "10to10 Adventures — Khammam's favourite family playground. Our story, our values, and the team behind the fun.",
+    "Why we built 10to10 Adventures, what we believe, and the small team behind Khammam's favourite play school and family entertainment venue.",
+  keywords: ["about 10to10", "10to10 Khammam", "play school owner Khammam"],
+  alternates: { canonical: "/about" },
 };
 
 const values = [

@@ -97,22 +97,19 @@ export default function ContactPage() {
     };
   }, [now]);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.phone || !form.message) return;
     setSubmitting(true);
-    const msg = encodeURIComponent(
-      `Hi 10to10!\n\n` +
-        `• Name: ${form.name}\n` +
-        `• Phone: ${form.phone}\n` +
-        `• Subject: ${form.subject}\n\n` +
-        form.message
-    );
-    setTimeout(() => {
-      window.open(`${siteConfig.whatsapp}?text=${msg}`, "_blank", "noopener,noreferrer");
-      setSubmitting(false);
-      setSent(true);
-    }, 400);
+    const { submitLead } = await import("@/lib/lead");
+    await submitLead("Contact Page", {
+      name: form.name,
+      phone: form.phone,
+      subject: form.subject,
+      message: form.message,
+    });
+    setSubmitting(false);
+    setSent(true);
   };
 
   const directions =

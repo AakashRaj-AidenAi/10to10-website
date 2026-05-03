@@ -4,9 +4,16 @@ import { BookButton } from "@/components/book-button";
 import { sessionPricing } from "@/content/memberships";
 
 export const metadata = {
-  title: "Memberships",
+  title: "Memberships — Kids Play Area Khammam | 10to10 Adventures",
   description:
-    "Silver, Gold and Platinum memberships for 10to10 Adventures. Save 30–50% on play sessions, unlock priority booking, free visits and exclusive perks.",
+    "Silver, Gold, Platinum kids play area memberships in Khammam. Save 30–50% on play sessions, priority booking, free monthly visits, exclusive perks.",
+  keywords: [
+    "play area membership Khammam",
+    "kids play pass Khammam",
+    "10to10 membership",
+    "kids entertainment subscription Khammam",
+  ],
+  alternates: { canonical: "/memberships" },
 };
 
 const compare = [
