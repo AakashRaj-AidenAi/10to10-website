@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /logo-preview
+
+Host: https://10to10adventures.com
+Sitemap: https://10to10adventures.com/sitemap.xml
