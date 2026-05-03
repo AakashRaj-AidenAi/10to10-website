@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fredoka, Nunito } from "next/font/google";
+import { Lora, Inter, Fredoka } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
@@ -12,18 +12,21 @@ import { RouteScrollTop } from "@/components/route-scroll-top";
 import { StickyMobileCta } from "@/components/sticky-mobile-cta";
 import { siteConfig } from "@/lib/utils";
 
-const displayFont = Fredoka({
+// Lora — warm, premium, gender-neutral serif for headings
+const displayFont = Lora({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700"],
   variable: "--font-display",
   display: "swap",
 });
-const bodyFont = Nunito({
+// Inter — clean, professional body text
+const bodyFont = Inter({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 });
-// Playful variant is same as display in this direction
+// Fredoka — retained for the playful "10" digits in the logo
 const playfulFont = Fredoka({
   subsets: ["latin"],
   weight: ["600", "700"],

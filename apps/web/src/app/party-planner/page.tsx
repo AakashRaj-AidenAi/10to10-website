@@ -19,9 +19,17 @@ import {
 } from "@/content/parties";
 
 export const metadata = {
-  title: "Birthday Parties & Celebrations",
+  title: "Birthday Party Venue Khammam — Kids Party Hall | 10to10 Adventures",
   description:
-    "Throw the birthday party your kid will never forget. Themed packages, private venue, full-service hosts, custom cakes and memorable magic — all at 10to10 Adventures, Khammam.",
+    "Khammam's premier birthday party venue for kids. Themed decor, hosts, cake, private theatre. Packages from ₹7,999 for up to 15 guests. Book your party today.",
+  keywords: [
+    "birthday party venue Khammam",
+    "kids party hall Khammam",
+    "birthday venue near me",
+    "kids birthday party Khammam",
+    "themed birthday Khammam",
+  ],
+  alternates: { canonical: "/party-planner" },
 };
 
 export default function PartyPlannerPage() {
