@@ -37,8 +37,10 @@ export function ZoneGrid() {
                 className="group card card-hover block h-full p-6"
               >
                 <div className="flex items-start justify-between mb-5">
-                  <span className="text-3xl">{zone.icon}</span>
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-black/10 text-brand-ink/40 group-hover:bg-brand-ink group-hover:border-brand-ink group-hover:text-white transition-all">
+                  <span className="text-3xl inline-block transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110">
+                    {zone.icon}
+                  </span>
+                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-black/10 text-brand-ink/40 group-hover:bg-brand-ink group-hover:border-brand-ink group-hover:text-white group-hover:rotate-45 transition-all duration-300">
                     <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </div>

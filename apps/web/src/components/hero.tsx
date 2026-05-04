@@ -4,6 +4,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import { BookButton } from "./book-button";
+import { SparkleIcon, StarIcon, HeartIcon } from "./vectors";
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -84,36 +85,46 @@ export function Hero() {
             </a>
           </motion.div>
 
-          {/* Numbers row — tight, tabular, no giant stat cards */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-16 md:mt-24 max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-8 md:gap-y-0"
-          >
-            {[
-              { n: "7", l: "zones" },
-              { n: "2,400", l: "sq ft of play" },
-              { n: "10,000+", l: "happy visits / yr" },
-              { n: "4.9", l: "on Google" },
-            ].map((s, i) => (
-              <div
-                key={s.l}
-                className={`text-left md:px-6 md:border-l ${
-                  i === 0 ? "md:border-l-0" : "border-black/10"
-                }`}
-              >
-                <div className="font-display text-3xl md:text-4xl font-bold text-brand-ink tabular-nums">
-                  {s.n}
-                </div>
-                <div className="text-xs md:text-sm text-brand-ink/55 mt-1 font-medium uppercase tracking-wider">
-                  {s.l}
-                </div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </motion.div>
+
+      {/* Playful floating decorations — subtle, not emoji-soup */}
+      {!reduce && (
+        <>
+          <motion.div
+            aria-hidden
+            className="absolute top-[18%] left-[6%] text-brand-yellow hidden md:block pointer-events-none"
+            animate={{ y: [0, -12, 0], rotate: [0, 8, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <SparkleIcon className="h-8 w-8" />
+          </motion.div>
+          <motion.div
+            aria-hidden
+            className="absolute top-[28%] right-[8%] text-brand-primary/40 hidden md:block pointer-events-none"
+            animate={{ y: [0, -16, 0], rotate: [0, -10, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          >
+            <StarIcon className="h-10 w-10" />
+          </motion.div>
+          <motion.div
+            aria-hidden
+            className="absolute bottom-[22%] left-[10%] text-brand-turquoise/60 hidden md:block pointer-events-none"
+            animate={{ y: [0, 14, 0], rotate: [0, 5, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          >
+            <HeartIcon className="h-7 w-7" />
+          </motion.div>
+          <motion.div
+            aria-hidden
+            className="absolute bottom-[18%] right-[12%] text-brand-yellow hidden md:block pointer-events-none"
+            animate={{ rotate: [0, 360], scale: [1, 1.15, 1] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          >
+            <SparkleIcon className="h-6 w-6" />
+          </motion.div>
+        </>
+      )}
 
       {/* Crisp scroll cue */}
       {!reduce && (

@@ -4,6 +4,7 @@ import { createContext, useContext, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, Check, MessageCircle, Phone } from "lucide-react";
 import { siteConfig } from "@/lib/utils";
+import { ConfettiBurst } from "./confetti-burst";
 
 type Ctx = { open: (preset?: string) => void; close: () => void };
 const BookingCtx = createContext<Ctx | null>(null);
@@ -207,12 +208,13 @@ export function BookingProvider({ children }: { children: ReactNode }) {
                   </a>
                 </form>
               ) : (
-                <div className="p-8 text-center">
+                <div className="p-8 text-center relative">
+                  <ConfettiBurst />
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", damping: 10 }}
-                    className="mx-auto w-20 h-20 rounded-full bg-brand-mint/30 flex items-center justify-center mb-4"
+                    className="mx-auto w-20 h-20 rounded-full bg-brand-mint/30 flex items-center justify-center mb-4 relative z-10"
                   >
                     <Check className="h-10 w-10 text-brand-turquoise" strokeWidth={3} />
                   </motion.div>
