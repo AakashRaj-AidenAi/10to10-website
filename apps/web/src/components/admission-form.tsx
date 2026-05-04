@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Check, MessageCircle } from "lucide-react";
 import { submitLead } from "@/lib/lead";
+import { ConfettiBurst } from "./confetti-burst";
 
 const programs = ["Playgroup (1.5–2.5)", "Nursery (2.5–3.5)", "LKG (3.5–4.5)", "UKG (4.5–5.5)"];
 const months = ["June 2026", "July 2026", "August 2026", "September 2026", "Later"];
@@ -47,9 +48,10 @@ export function AdmissionForm() {
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-2xl bg-white border border-black/[0.07] p-8 text-center"
+        className="relative rounded-2xl bg-white border border-black/[0.07] p-8 text-center overflow-hidden"
       >
-        <div className="inline-flex w-14 h-14 rounded-full bg-brand-primary/10 text-brand-primary items-center justify-center mb-4">
+        <ConfettiBurst />
+        <div className="relative inline-flex w-14 h-14 rounded-full bg-brand-primary/10 text-brand-primary items-center justify-center mb-4 z-10">
           <Check className="h-7 w-7" strokeWidth={2.5} />
         </div>
         <h3 className="font-display text-2xl font-bold text-brand-ink">Inquiry received!</h3>
