@@ -55,8 +55,12 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-sm transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-primary/30 disabled:opacity-50;
   }
   .btn-primary {
-    @apply btn bg-brand-primary text-white hover:bg-brand-primary-deep hover:-translate-y-[1px] active:translate-y-0;
-    box-shadow: 0 6px 16px -4px rgba(44,56,115,0.35), 0 2px 4px rgba(17,12,35,0.08);
+    @apply btn text-white hover:-translate-y-[1px] active:translate-y-0;
+    background: linear-gradient(135deg, #2c3873 0%, #1a8a8a 100%);
+    box-shadow: 0 6px 16px -4px rgba(44,56,115,0.45), 0 2px 4px rgba(17,12,35,0.08);
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #1a2354 0%, #2c3873 50%, #00d4c8 100%);
   }
   .btn-yellow {
     @apply btn bg-brand-yellow text-brand-ink hover:brightness-95 hover:-translate-y-[1px] active:translate-y-0;

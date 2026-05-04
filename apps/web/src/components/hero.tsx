@@ -4,7 +4,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import { BookButton } from "./book-button";
-import { SparkleIcon, StarIcon, HeartIcon } from "./vectors";
+import { SparkleIcon, StarIcon, HeartIcon, UnderlineSquiggle } from "./vectors";
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -30,8 +30,9 @@ export function Hero() {
           WebkitMaskImage: "radial-gradient(ellipse at center, rgba(0,0,0,0.6), transparent 70%)",
         }}
       />
-      <div className="absolute -top-20 -right-20 w-[480px] h-[480px] rounded-full bg-brand-primary/8 blur-3xl" />
-      <div className="absolute -bottom-32 -left-20 w-[420px] h-[420px] rounded-full bg-brand-yellow/15 blur-3xl" />
+      <div className="absolute -top-20 -right-20 w-[480px] h-[480px] rounded-full bg-brand-primary/15 blur-3xl" />
+      <div className="absolute -bottom-32 -left-20 w-[420px] h-[420px] rounded-full bg-brand-yellow/30 blur-3xl" />
+      <div className="absolute top-[40%] -left-40 w-[360px] h-[360px] rounded-full bg-brand-turquoise/20 blur-3xl" />
 
       <motion.div style={{ opacity: opacityTitle, y }} className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -55,7 +56,12 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="heading-xl mt-6"
           >
-            Seven zones of play,
+            Seven zones of{" "}
+            <span className="relative inline-block">
+              <span className="text-brand-turquoise italic">play</span>
+              <UnderlineSquiggle className="absolute -bottom-1 left-0 w-full h-2 text-brand-yellow" />
+            </span>
+            ,
             <br />
             <span className="accent">one unforgettable day.</span>
           </motion.h1>
@@ -101,7 +107,7 @@ export function Hero() {
           </motion.div>
           <motion.div
             aria-hidden
-            className="absolute top-[28%] right-[8%] text-brand-primary/40 hidden md:block pointer-events-none"
+            className="absolute top-[28%] right-[8%] text-brand-primary hidden md:block pointer-events-none"
             animate={{ y: [0, -16, 0], rotate: [0, -10, 0] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
           >
@@ -109,7 +115,7 @@ export function Hero() {
           </motion.div>
           <motion.div
             aria-hidden
-            className="absolute bottom-[22%] left-[10%] text-brand-turquoise/60 hidden md:block pointer-events-none"
+            className="absolute bottom-[22%] left-[10%] text-brand-turquoise hidden md:block pointer-events-none"
             animate={{ y: [0, 14, 0], rotate: [0, 5, 0] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
           >

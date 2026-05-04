@@ -3,7 +3,18 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { zones } from "@/content/zones";
+import { zones, type Accent } from "@/content/zones";
+import { cn } from "@/lib/utils";
+
+const accentClasses: Record<Accent, { bar: string; chip: string; glow: string }> = {
+  primary:   { bar: "bg-brand-primary",   chip: "bg-brand-primary/10 text-brand-primary",     glow: "group-hover:shadow-[0_8px_30px_-6px_rgba(44,56,115,0.25)]" },
+  turquoise: { bar: "bg-brand-turquoise", chip: "bg-brand-turquoise/15 text-brand-turquoise", glow: "group-hover:shadow-[0_8px_30px_-6px_rgba(0,212,200,0.3)]" },
+  yellow:    { bar: "bg-brand-yellow",    chip: "bg-brand-yellow/30 text-amber-700",          glow: "group-hover:shadow-[0_8px_30px_-6px_rgba(255,217,61,0.4)]" },
+  grape:     { bar: "bg-brand-grape",     chip: "bg-brand-grape/15 text-brand-grape",         glow: "group-hover:shadow-[0_8px_30px_-6px_rgba(139,92,246,0.3)]" },
+  orange:    { bar: "bg-brand-orange",    chip: "bg-brand-orange/15 text-brand-orange",       glow: "group-hover:shadow-[0_8px_30px_-6px_rgba(255,138,61,0.3)]" },
+  mint:      { bar: "bg-brand-mint",      chip: "bg-brand-mint/30 text-emerald-700",          glow: "group-hover:shadow-[0_8px_30px_-6px_rgba(124,226,181,0.35)]" },
+  sky:       { bar: "bg-brand-sky",       chip: "bg-brand-sky/30 text-sky-700",               glow: "group-hover:shadow-[0_8px_30px_-6px_rgba(124,197,255,0.35)]" },
+};
 
 export function ZoneGrid() {
   return (
@@ -24,41 +35,50 @@ export function ZoneGrid() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {zones.map((zone, i) => (
-            <motion.div
-              key={zone.slug}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.4, delay: i * 0.04 }}
-            >
-              <Link
-                href={`/zones/${zone.slug}`}
-                className="group card card-hover block h-full p-6"
+          {zones.map((zone, i) => {
+            const a = accentClasses[zone.accent];
+            return (
+              <motion.div
+                key={zone.slug}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.4, delay: i * 0.04 }}
               >
-                <div className="flex items-start justify-between mb-5">
-                  <span className="text-3xl inline-block transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110">
-                    {zone.icon}
+                <Link
+                  href={`/zones/${zone.slug}`}
+                  className={cn(
+                    "group card card-hover relative block h-full p-6 overflow-hidden",
+                    a.glow
+                  )}
+                >
+                  {/* colored top bar — visual variety per card */}
+                  <span className={cn("absolute top-0 inset-x-0 h-1", a.bar)} />
+
+                  <div className="flex items-start justify-between mb-5 mt-1">
+                    <span className="text-3xl inline-block transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110">
+                      {zone.icon}
+                    </span>
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-black/10 text-brand-ink/40 group-hover:bg-brand-ink group-hover:border-brand-ink group-hover:text-white group-hover:rotate-45 transition-all duration-300">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                  <span className={cn("inline-block text-[11px] font-bold uppercase tracking-widest rounded-full px-2.5 py-1", a.chip)}>
+                    {zone.ages}
                   </span>
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-black/10 text-brand-ink/40 group-hover:bg-brand-ink group-hover:border-brand-ink group-hover:text-white group-hover:rotate-45 transition-all duration-300">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
-                </div>
-                <div className="text-[11px] font-semibold uppercase tracking-widest text-brand-ink/45">
-                  {zone.ages}
-                </div>
-                <h3 className="font-display text-xl font-bold mt-1.5 text-brand-ink">
-                  {zone.name}
-                </h3>
-                <p className="mt-1 text-sm text-brand-primary font-medium">
-                  {zone.tagline}
-                </p>
-                <p className="mt-3 text-sm text-brand-ink/65 leading-relaxed">
-                  {zone.description}
-                </p>
-              </Link>
-            </motion.div>
-          ))}
+                  <h3 className="font-display text-xl font-bold mt-3 text-brand-ink">
+                    {zone.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-brand-primary font-medium">
+                    {zone.tagline}
+                  </p>
+                  <p className="mt-3 text-sm text-brand-ink/65 leading-relaxed">
+                    {zone.description}
+                  </p>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
