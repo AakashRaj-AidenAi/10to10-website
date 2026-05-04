@@ -3,13 +3,13 @@
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-type Stat = { n: number; suffix?: string; label: string };
+type Stat = { n: number; suffix?: string; label: string; color: string };
 
 const stats: Stat[] = [
-  { n: 7, label: "Themed zones" },
-  { n: 2400, label: "Sq ft of play" },
-  { n: 10000, suffix: "+", label: "Happy visits / yr" },
-  { n: 4.9, label: "Google rating" },
+  { n: 7, label: "Themed zones", color: "text-brand-primary" },
+  { n: 2400, label: "Sq ft of play", color: "text-brand-turquoise" },
+  { n: 10000, suffix: "+", label: "Happy visits / yr", color: "text-amber-600" },
+  { n: 4.9, label: "Google rating", color: "text-brand-grape" },
 ];
 
 function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
@@ -36,7 +36,7 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
 
   return (
     <span ref={ref}>
-      {v.toLocaleString("en-IN")}
+      {v.toLocaleString("en-US")}
       {suffix}
     </span>
   );
@@ -44,8 +44,14 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
 
 export function StatsStrip() {
   return (
-    <section className="py-14 md:py-16 bg-white border-y border-black/[0.07]">
-      <div className="container">
+    <section className="py-14 md:py-16 bg-white border-y border-black/[0.07] relative overflow-hidden">
+      {/* Playful colored dots scattered behind */}
+      <span className="absolute top-6 left-[12%] h-2 w-2 rounded-full bg-brand-primary/40" aria-hidden />
+      <span className="absolute bottom-8 left-[28%] h-2.5 w-2.5 rounded-full bg-brand-yellow" aria-hidden />
+      <span className="absolute top-10 right-[18%] h-3 w-3 rounded-full bg-brand-turquoise/40" aria-hidden />
+      <span className="absolute bottom-6 right-[8%] h-2 w-2 rounded-full bg-brand-grape/50" aria-hidden />
+
+      <div className="container relative">
         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-black/[0.07]">
           {stats.map((s, i) => (
             <motion.div
@@ -56,7 +62,7 @@ export function StatsStrip() {
               transition={{ duration: 0.35, delay: i * 0.04 }}
               className="px-5 md:px-8 first:pl-0 last:pr-0"
             >
-              <div className="font-display text-3xl md:text-5xl font-bold text-brand-ink tabular-nums">
+              <div className={`font-display text-3xl md:text-5xl font-bold tabular-nums ${s.color}`}>
                 <CountUp to={s.n} suffix={s.suffix} />
               </div>
               <div className="text-[11px] md:text-xs text-brand-ink/55 mt-2 font-semibold uppercase tracking-widest">
