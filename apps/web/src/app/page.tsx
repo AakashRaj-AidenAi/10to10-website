@@ -1,4 +1,5 @@
 import { Hero } from "@/components/hero";
+import { VenueShowcase } from "@/components/venue-showcase";
 import { StatsStrip } from "@/components/stats-strip";
 import { ZoneGrid } from "@/components/zone-grid";
 import { WhyUs } from "@/components/why-us";
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <VenueShowcase />
       <StatsStrip />
       <ZoneGrid />
       <WhyUs />
