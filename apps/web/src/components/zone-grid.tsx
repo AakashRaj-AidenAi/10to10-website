@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { zones, type Accent } from "@/content/zones";
 import { cn } from "@/lib/utils";
+import { TiltCard } from "./tilt-card";
 
 const accentClasses: Record<Accent, { bar: string; chip: string; glow: string }> = {
   primary:   { bar: "bg-brand-primary",   chip: "bg-brand-primary/10 text-brand-primary",     glow: "group-hover:shadow-[0_8px_30px_-6px_rgba(44,56,115,0.25)]" },
@@ -40,42 +41,47 @@ export function ZoneGrid() {
             return (
               <motion.div
                 key={zone.slug}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.4, delay: i * 0.04 }}
+                transition={{ duration: 0.45, delay: i * 0.04 }}
               >
-                <Link
-                  href={`/zones/${zone.slug}`}
-                  className={cn(
-                    "group card card-hover relative block h-full p-6 overflow-hidden",
-                    a.glow
-                  )}
-                >
-                  {/* colored top bar — visual variety per card */}
-                  <span className={cn("absolute top-0 inset-x-0 h-1", a.bar)} />
+                <TiltCard intensity={6} className="h-full">
+                  <Link
+                    href={`/zones/${zone.slug}`}
+                    className={cn(
+                      "group card relative block h-full p-6 overflow-hidden transition",
+                      a.glow
+                    )}
+                  >
+                    {/* colored top accent bar */}
+                    <span className={cn("absolute top-0 inset-x-0 h-1", a.bar)} />
 
-                  <div className="flex items-start justify-between mb-5 mt-1">
-                    <span className="text-3xl inline-block transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110">
-                      {zone.icon}
+                    <div
+                      className="flex items-start justify-between mb-5 mt-1"
+                      style={{ transform: "translateZ(20px)" }}
+                    >
+                      <span className="text-3xl inline-block transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110">
+                        {zone.icon}
+                      </span>
+                      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-black/10 text-brand-ink/40 group-hover:bg-brand-ink group-hover:border-brand-ink group-hover:text-white group-hover:rotate-45 transition-all duration-300">
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
+                    </div>
+                    <span className={cn("inline-block text-[11px] font-bold uppercase tracking-widest rounded-full px-2.5 py-1", a.chip)}>
+                      {zone.ages}
                     </span>
-                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-black/10 text-brand-ink/40 group-hover:bg-brand-ink group-hover:border-brand-ink group-hover:text-white group-hover:rotate-45 transition-all duration-300">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </span>
-                  </div>
-                  <span className={cn("inline-block text-[11px] font-bold uppercase tracking-widest rounded-full px-2.5 py-1", a.chip)}>
-                    {zone.ages}
-                  </span>
-                  <h3 className="font-display text-xl font-bold mt-3 text-brand-ink">
-                    {zone.name}
-                  </h3>
-                  <p className="mt-1 text-sm text-brand-primary font-medium">
-                    {zone.tagline}
-                  </p>
-                  <p className="mt-3 text-sm text-brand-ink/65 leading-relaxed">
-                    {zone.description}
-                  </p>
-                </Link>
+                    <h3 className="font-display text-xl font-bold mt-3 text-brand-ink">
+                      {zone.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-brand-primary font-medium">
+                      {zone.tagline}
+                    </p>
+                    <p className="mt-3 text-sm text-brand-ink/65 leading-relaxed">
+                      {zone.description}
+                    </p>
+                  </Link>
+                </TiltCard>
               </motion.div>
             );
           })}

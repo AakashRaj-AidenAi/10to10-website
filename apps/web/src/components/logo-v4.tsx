@@ -21,9 +21,17 @@ export function LogoV4({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   const gap = size === "lg" ? "0.45rem" : "0.3rem";
 
   return (
-    <div className="flex items-center gap-3 select-none leading-none" style={{ color: "inherit" }}>
-      {/* The mark: 10 ∞ 10 */}
-      <div className="flex items-center" style={{ gap }}>
+    <div
+      className="flex items-center gap-3 select-none leading-none group"
+      style={{ color: "inherit", perspective: 600 }}
+    >
+      {/* The mark: 10 ∞ 10 — gets 3D Y-axis rotation on hover */}
+      <motion.div
+        className="flex items-center"
+        style={{ gap, transformStyle: "preserve-3d" }}
+        whileHover={{ rotateY: 12 }}
+        transition={{ type: "spring", stiffness: 200, damping: 18 }}
+      >
         {/* Left "10" — deep indigo, premium */}
         <motion.span
           className="font-bold tabular-nums tracking-[-0.04em] text-brand-primary"
@@ -93,7 +101,7 @@ export function LogoV4({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
         >
           10
         </motion.span>
-      </div>
+      </motion.div>
 
       {/* Tiny tagline pillar */}
       <div
