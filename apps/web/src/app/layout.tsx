@@ -63,6 +63,9 @@ export const metadata: Metadata = {
     description: siteConfig.description,
   },
   robots: { index: true, follow: true },
+  other: {
+    "cache-control": "no-cache, must-revalidate",
+  },
 };
 
 export const viewport: Viewport = {
